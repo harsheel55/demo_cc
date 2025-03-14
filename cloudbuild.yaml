@@ -1,0 +1,22 @@
+steps:
+  # Step 1: Install dependencies
+  - name: 'node:16'
+    entrypoint: 'npm'
+    args: ['install']
+
+  # Step 2: Run tests
+  - name: 'node:16'
+    entrypoint: 'npm'
+    args: ['test', '--', '--watchAll=false']
+
+  # Step 3: Build the React app
+  - name: 'node:16'
+    entrypoint: 'npm'
+    args: ['run', 'build']
+
+  # Step 4: Deploy to Cloud Storage
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['-m', 'cp', '-r', 'build/*', 'gs://react-gcp-demo-bucket/']
+
+options:
+  logging: CLOUD_LOGGING_ONLY
