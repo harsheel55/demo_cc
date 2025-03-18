@@ -3,6 +3,6 @@ import App from './App';
 
 test('renders deployment test message', () => {
   render(<App />);
-  const headerElement = screen.getByText(/Test Deployment - March 17/i);
+  const headerElement = screen.getByText(/Test Deployment - March 18/i);
   expect(headerElement).toBeInTheDocument();
 });
